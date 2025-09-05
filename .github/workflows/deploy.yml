@@ -11,19 +11,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the code
-        uses: actions/checkout@v5
 
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1
+      - name: Checkout the code
+        uses: actions/checkout@v5
         with:
           host: 34.228.13.231
           username: ubuntu
           key: ${{ secrets.PRIVATE_SSH_KEY }}
           port: 22
-          script: |
-              cd angor-aquamarine-glow
-              git pull origin main
-              npm install
-              npm run build
-              npm run dev
+          script: ./deploy.sh
