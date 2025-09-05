@@ -45,7 +45,7 @@ jobs:
               else
                 echo "Project directory not found"
                 # Clone the repository if it doesn't exist
-                git clone https://github.com/YOUR_USERNAME/angor-aquamarine-glow.git
+                git clone https://github.com/yashop7/angor-aquamarine-glow.git
                 cd angor-aquamarine-glow
                 npm install
                 npm run build
