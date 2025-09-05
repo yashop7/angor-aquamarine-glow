@@ -37,14 +37,10 @@ export function FAQSection() {
   return (
     <section className="py-24 bg-gradient-to-b from-angor-darkTeal to-angor-cyan/90 relative overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(8,108,129,0.3)_0%,rgba(2,34,41,0.6)_70%)]"></div>
-        <div className="absolute inset-0 opacity-10">
-          <svg className="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <pattern id="grid" width="8" height="8" patternUnits="userSpaceOnUse">
-              <path d="M 8 0 L 0 0 0 8" fill="none" stroke="rgba(203, 221, 225, 0.5)" strokeWidth="0.5"></path>
-            </pattern>
-            <rect width="100%" height="100%" fill="url(#grid)"></rect>
-          </svg>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(8,108,129,0.3)_0%,rgba(2,34,41,0.7)_70%)]"></div>
+        <div className="absolute top-0 left-0 w-full h-full opacity-20">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-angor-cyan/30 blur-[100px]"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-angor-steel/20 blur-[120px]"></div>
         </div>
       </div>
       
@@ -54,15 +50,15 @@ export function FAQSection() {
           <h3 className="text-4xl font-bold text-white mb-6">Frequently Asked Questions</h3>
         </div>
         
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <Accordion type="single" collapsible className="w-full space-y-6">
             {faqs.map((faq, index) => (
               <AccordionItem 
                 key={index} 
                 value={`faq-${index}`}
-                className="bg-angor-darkTeal/60 border border-angor-cyan/20 rounded-lg overflow-hidden"
+                className="bg-angor-darkTeal/90 border border-angor-cyan/20 rounded-lg overflow-hidden"
               >
-                <AccordionTrigger className="px-6 py-4 text-lg font-medium text-angor-steel hover:text-white">
+                <AccordionTrigger className="px-6 py-7 text-lg font-medium text-angor-steel hover:text-white">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6 text-angor-steel/90">

@@ -94,9 +94,8 @@
     @apply bg-angor-darkTeal text-foreground;
   }
 }
-
 .glass-card {
-  @apply bg-white/10 backdrop-blur-md rounded-xl border border-white/20;
+@apply bg-angor-darkTeal/75 backdrop-blur-lg rounded-xl border border-white/30 shadow-lg;
 }
 
 .feature-card {
