@@ -11,14 +11,44 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout the code
+        uses: actions/checkout@v5
 
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1
-      - name: Checkout the code
-        uses: actions/checkout@v5
         with:
           host: 34.228.13.231
           username: ubuntu
           key: ${{ secrets.PRIVATE_SSH_KEY }}
           port: 22
-          script: ./deploy.sh
+          script: |
+            # Navigate to home directory first
+            cd ~
+            
+            # Make deploy script executable if it exists
+            if [ -f deploy.sh ]; then
+              chmod +x deploy.sh
+              ./deploy.sh
+            else
+              echo "deploy.sh not found in home directory"
+              
+              # Alternative: run commands directly
+              if [ -d "angor-aquamarine-glow" ]; then
+                cd angor-aquamarine-glow
+                git pull origin main
+                npm install
+                npm run build
+                
+                # Use pm2 instead of npm run dev for production
+                # npm run dev keeps running and blocks the script
+                pm2 restart angor-app || pm2 start "npm run dev" --name angor-app
+              else
+                echo "Project directory not found"
+                # Clone the repository if it doesn't exist
+                git clone https://github.com/YOUR_USERNAME/angor-aquamarine-glow.git
+                cd angor-aquamarine-glow
+                npm install
+                npm run build
+                pm2 start "npm run dev" --name angor-app
+              fi
+            fi
